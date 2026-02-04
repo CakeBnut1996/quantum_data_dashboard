@@ -1,0 +1,71 @@
+dashboard_content:
+  title: "Energy and Physical Resource Impacts of Quantum Computing at Scale"
+  intro_markdown: |
+    ### Three Different Fault-tolerant Quantum Computers (FTQC) System Configurations:
+    - **Practical FTQC:** Based on IBM’s expectations for its System Two in the ~2027+ timeframe; 200 logical qubits and a ratio of 500 physical qubits per logical qubit; target logical error rate of 10^-7; less optimistic assumptions for cryogenics and control electronics. 
+    - **Small Full FTQC:** Based on IBM’s expectations for its System Two in the ~2033+ timeframe; 2,000 logical qubits and a ratio of 1,000 physical qubits per logical qubit; target logical error rate of 10^-12; more optimistic assumptions for cryogenics and control electronics. 
+    - **Large Full FTQC:** An expansion of the Small Full FTQC; larger cryo-chambers (Fermilab Colossus–class volumes); 5,000 logical qubits and a ratio of 2,000 physical qubits per logical qubit; target logical error rate of 10^-15; significantly more optimistic assumptions for cryogenics (e.g., much higher qubit densities per cryo-chamber) 
+  map_markdown: |
+    - **US Quantum R&D Centers:** Locations of federal quantum research centers in the United States involved in quantum computing R&D from Center for Strategic & International Studies (https://www.csis.org/analysis/innovation-lightbulb-us-federal-investments-quantum-technology-research-and-infrastructure).
+    - **US Commercial Data Centers:** Locations of US commercial data centers up until mid-2025 from S&P Global Research Datacenter KnowledgeBase.
+
+gis_layers:
+  US Federal Quantum R&D Centers: "./data_map/quantum data center/quantum_data_center.geojson"
+  US Commercial Data Centers: "./data_map/data center/data_center_all.png"
+  style: "./data_map/map_style.yaml"
+
+bar_chart_data:
+  Low Penetration:
+    - scale: "Practical FTQC"
+      electricity: 14
+      water: 129104
+      ln2: 1415616
+      he4: 9293
+      he3: 1666667
+    - scale: "Small Fully FTQC"
+      electricity: 35
+      water: 334637
+      ln2: 3669277
+      he4: 24088
+      he3: 4320000
+    - scale: "Large Fully FTQC"
+      electricity: 5
+      water: 49342
+      ln2: 1274054
+      he4: 8364
+      he3: 1500000
+
+  High Penetration:
+    - scale: "Practical FTQC"
+      electricity: 140
+      water: 1291037
+      ln2: 14156160
+      he4: 92933
+      he3: 16666667
+    - scale: "Small Fully FTQC"
+      electricity: 352
+      water: 3346369
+      ln2: 36692767
+      he4: 240883
+      he3: 43200000
+    - scale: "Large Fully FTQC"
+      electricity: 50
+      water: 493424
+      ln2: 12740544
+      he4: 83640
+      he3: 15000000
+
+
+bar_chart_info:
+  labels:
+    electricity: "Electric Power"
+    water: "Water"
+    ln2: "Liquid Nitrogen"
+    he4: "Liquid Helium-4"
+    he3: "Isotope Helium-3"
+  units:
+    electricity: "MW"
+    water: "million liters/year"
+    ln2: "million liters/year"
+    he4: "million liters"
+    he3: "liters/year"

@@ -25,9 +25,9 @@ dist-ssr
 
 
 report/
-data_map/
+data_map/data center/data_center_all.geojson
+data_map/data center/Q2 2025 451 Research Datacenter KnowledgeBase_GLOBAL.csv
 .venv
-DashboardInput.yaml
-./DashboardInput.yaml
+
 
 *.cpython-*.pyc

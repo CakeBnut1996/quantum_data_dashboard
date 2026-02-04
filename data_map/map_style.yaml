@@ -1,0 +1,19 @@
+# External Map Style Configuration
+defaults:
+  color: "#888888"
+  size: 8
+  opacity: 0.7
+  symbol: "circle"
+
+layers:
+  US Federal Quantum R&D Centers:
+    color: "#E63946"       # Red
+    size: 15
+    symbol: "circle"       # Options: circle, square, diamond, cross
+    opacity: 0.9
+
+  US Commercial Data Centers:
+    color: "#457B9D"       # Blue
+    size: 6
+    symbol: "square"
+    opacity: 0.6

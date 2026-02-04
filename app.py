@@ -5,14 +5,14 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
-
+import json
 from src_streamlit.quantum_data_loader import (
     get_display_text,
     get_barchart_data,
     get_map_layers_data,
     get_map_styles
 )
-
+from data_utils.GIS_format_converter import get_image_base64
 st.set_page_config(layout="wide", page_title="Quantum Resource Dashboard")
 
 # --- 1. Load Data ---
@@ -41,12 +41,12 @@ st.sidebar.header("Configuration")
 # Map Layer Selection
 available_layer_names = list(map_layers.keys())
 selected_layer_names = st.sidebar.multiselect(
-    "Map layers to show:",
+    "Map Layers:",
     available_layer_names,
     default=available_layer_names
 )
 
-selected_scale = st.sidebar.selectbox("Scale to select from:", SCALES, index=0)
+selected_scale = st.sidebar.selectbox("FTQC System Configuration:", SCALES, index=0)
 
 # --- 3. Main Content ---
 st.title(content.get('title', "Quantum Resource Dashboard"))
@@ -130,12 +130,34 @@ with right_col:
 
     if has_data:
         fig_map.update_layout(
-            mapbox_style="open-street-map",
+            mapbox={
+                "style": "open-street-map",
+                "bounds": {
+                    "west": -135, "east": -60,
+                    "south": 20, "north": 55
+                },
+                "center": {"lat": 38.0, "lon": -95.0},
+                "zoom": 1,
+                "layers": [
+                    {
+                        "sourcetype": "raster",
+                        "source": ["https://github.com/CakeBnut1996/quantum_data_dashboard/tree/master/data_map/data%20center/{z}/{x}/{y}.png"],
+                        "below": "traces"
+                    }
+                ],
+                "center": {"lat": 38.0, "lon": -95.0},
+                "zoom": 3
+            },
             margin={"r": 0, "t": 0, "l": 0, "b": 0},
-            height=600,
+            height=300,
             showlegend=True,
             legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
         )
+
         st.plotly_chart(fig_map, use_container_width=True)
     else:
         st.info("No layer data selected or available.")
+
+    st.subheader("Description")
+    if 'map_markdown' in content:
+        st.markdown(content['map_markdown'])
