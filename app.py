@@ -136,17 +136,8 @@ with right_col:
                     "west": -135, "east": -60,
                     "south": 20, "north": 55
                 },
-                "center": {"lat": 38.0, "lon": -95.0},
                 "zoom": 1,
-                "layers": [
-                    {
-                        "sourcetype": "raster",
-                        "source": ["https://github.com/CakeBnut1996/quantum_data_dashboard/tree/master/data_map/data%20center/{z}/{x}/{y}.png"],
-                        "below": "traces"
-                    }
-                ],
                 "center": {"lat": 38.0, "lon": -95.0},
-                "zoom": 3
             },
             margin={"r": 0, "t": 0, "l": 0, "b": 0},
             height=300,

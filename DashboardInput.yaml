@@ -22,13 +22,13 @@ bar_chart_data:
       ln2: 1415616
       he4: 9293
       he3: 1666667
-    - scale: "Small Fully FTQC"
+    - scale: "Full FTQC (Small)"
       electricity: 35
       water: 334637
       ln2: 3669277
       he4: 24088
       he3: 4320000
-    - scale: "Large Fully FTQC"
+    - scale: "Full FTQC (Large)"
       electricity: 5
       water: 49342
       ln2: 1274054
@@ -42,13 +42,13 @@ bar_chart_data:
       ln2: 14156160
       he4: 92933
       he3: 16666667
-    - scale: "Small Fully FTQC"
+    - scale: "Full FTQC (Small)"
       electricity: 352
       water: 3346369
       ln2: 36692767
       he4: 240883
       he3: 43200000
-    - scale: "Large Fully FTQC"
+    - scale: "Full FTQC (Large)"
       electricity: 50
       water: 493424
       ln2: 12740544
