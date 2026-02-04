@@ -25,8 +25,10 @@ dist-ssr
 
 
 report/
+data_map/SuppMaterial_data-calculations_20250925.xlsx
+data_map/view.qgz
 data_map/data center/data_center_all.geojson
-data_map/data center/Q2 2025 451 Research Datacenter KnowledgeBase_GLOBAL.csv
+data_map/data center/Q2 2025 451 Research Datacenter KnowledgeBase_USA.csv
 .venv
 
 
