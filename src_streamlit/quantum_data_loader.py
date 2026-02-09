@@ -2,56 +2,87 @@
 import json, os
 import yaml
 from pathlib import Path
+import duckdb
+from dotenv import load_dotenv
+import streamlit as st
 
 # --- Constants & Helpers ---
 BASE_DIR = Path(__name__).resolve().parent
 YAML_PATH = BASE_DIR / 'DashboardInput.yaml'
+load_dotenv()
+
+
+def get_motherduck_token():
+    """Retrieves token from Streamlit Secrets or Environment Variables."""
+    # 1. Try Streamlit Secrets (Cloud)
+    if "MOTHERDUCK_TOKEN" in st.secrets:
+        return st.secrets["MOTHERDUCK_TOKEN"]
+
+    # 2. Fallback to Environment Variables (Local)
+    return os.getenv("MOTHERDUCK_TOKEN")
 
 
 def _load_yaml(path):
-    """Helper to read the single source of truth YAML file."""
-    # Ensure it's a Path object (in case a string was passed)
-    path = Path(path)
+    """Reads YAML with relative-to-file path resolution."""
+    # Resolve relative to this script's directory if not absolute
+    p = Path(path)
+    if not p.is_absolute():
+        p = Path(__file__).parent.parent / p  # Adjust '.parent' count based on folder depth
 
-    # FIX: Use 'path', NOT 'YAML_PATH'
-    if not path.exists():
-        print(f"DEBUG: File not found: {path}")  # Helpful debug
+    if not p.exists():
+        print(f"DEBUG: File not found: {p}")
         return {}
 
     try:
-        # FIX: Use 'path' here too
-        return yaml.safe_load(path.read_text(encoding='utf-8')) or {}
+        return yaml.safe_load(p.read_text(encoding='utf-8')) or {}
     except Exception as e:
-        print(f"DEBUG: Error loading {path}: {e}")
+        print(f"DEBUG: Error loading {p}: {e}")
         return {}
 
-def _load_geojson_file(filename):
-    """
-    Helper to parse a GeoJSON file.
-    Supports ONLY:
-    1) Absolute paths.
-    2) Paths relative to the project root (Current Working Directory).
-    """
-    path = Path(filename)
-
-    # 1. Check if it is an absolute path
-    if path.is_absolute():
-        if path.exists():
-            try:
-                return json.loads(path.read_text(encoding='utf-8'))
-            except Exception:
-                pass
+def _fetch_from_motherduck(table_name):
+    token = get_motherduck_token()
+    if not token:
+        print(f"Error: MOTHERDUCK_TOKEN not found for {table_name}")
         return None
-    # 2. Check relative to Project Root (Current Working Directory)
-    # This captures "data_map/quantumhub.geojson" inside your project folder
-    project_path = Path.cwd() / filename
-    if project_path.exists():
-        try:
-            return json.loads(project_path.read_text(encoding='utf-8'))
-        except Exception:
-            pass
 
+    try:
+        # Pass the token explicitly in the connection string for maximum flexibility
+        con = duckdb.connect(f"md:?motherduck_token={token}")
+        con.execute("INSTALL spatial; LOAD spatial;")
+
+        query = f"SELECT *, ST_AsGeoJSON(ST_Point(Longitude, Latitude)) as geometry FROM {table_name}"
+        df = con.execute(query).df()
+
+        features = [
+            {
+                "type": "Feature",
+                "geometry": json.loads(row["geometry"]),
+                "properties": row.drop("geometry").to_dict()
+            }
+            for _, row in df.iterrows()
+        ]
+        return {"type": "FeatureCollection", "features": features}
+    except Exception as e:
+        st.error(f"MotherDuck Error ({table_name}): {e}")
+        return None
+
+
+def _load_geojson_file(resource_identifier):
+    """Unified loader: Detects MotherDuck URI or Local Path."""
+    if resource_identifier.startswith("motherduck://"):
+        return _fetch_from_motherduck(resource_identifier.replace("motherduck://", ""))
+
+    p = Path(resource_identifier)
+    # Ensure local files are found relative to the project root
+    if not p.is_absolute():
+        p = Path(__file__).parent.parent / p
+
+    if p.exists():
+        return json.loads(p.read_text(encoding='utf-8'))
+
+    st.warning(f"Resource not found: {resource_identifier}")
     return None
+
 
 def _extract_points(gj):
     """Convert GeoJSON to flat list of points for Streamlit map."""
@@ -96,19 +127,20 @@ def get_barchart_data():
 
 # --- 3. Display Maps Data ---
 def get_map_layers_data():
-    """Returns dictionary of { LayerName: [Points] } from gis_layers."""
-    data = _load_yaml(YAML_PATH)
-    layer_config = data.get("gis_layers", {})
-
+    """Returns { LayerName: [Points] } by iterating through YAML config."""
+    layer_config = _load_yaml(YAML_PATH).get("gis_layers", {})
     loaded_layers = {}
-    for name, filename in layer_config.items():
-        if name.lower() == 'style':
-            continue
-        geojson = _load_geojson_file(filename)
+
+    for name, uri in layer_config.items():
+        if name.lower() == 'style': continue
+
+        geojson = _load_geojson_file(uri)
         if geojson:
             points = _extract_points(geojson)
             if points:
                 loaded_layers[name] = points
+                print(f"Loaded {name}: {len(points)} points")
+
     return loaded_layers
 
 

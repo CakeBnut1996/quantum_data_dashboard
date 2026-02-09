@@ -3,57 +3,72 @@ dashboard_content:
   intro_markdown: |
     ### Three Different Fault-tolerant Quantum Computers (FTQC) System Configurations:
     - **Practical FTQC:** Based on IBM’s expectations for its System Two in the ~2027+ timeframe; 200 logical qubits and a ratio of 500 physical qubits per logical qubit; target logical error rate of 10^-7; less optimistic assumptions for cryogenics and control electronics. 
-    - **Small Full FTQC:** Based on IBM’s expectations for its System Two in the ~2033+ timeframe; 2,000 logical qubits and a ratio of 1,000 physical qubits per logical qubit; target logical error rate of 10^-12; more optimistic assumptions for cryogenics and control electronics. 
-    - **Large Full FTQC:** An expansion of the Small Full FTQC; larger cryo-chambers (Fermilab Colossus–class volumes); 5,000 logical qubits and a ratio of 2,000 physical qubits per logical qubit; target logical error rate of 10^-15; significantly more optimistic assumptions for cryogenics (e.g., much higher qubit densities per cryo-chamber) 
+    - **Full FTQC (Small):** Based on IBM’s expectations for its System Two in the ~2033+ timeframe; 2,000 logical qubits and a ratio of 1,000 physical qubits per logical qubit; target logical error rate of 10^-12; more optimistic assumptions for cryogenics and control electronics. 
+    - **LFull FTQC (Large):** An expansion of the Small Full FTQC; larger cryo-chambers (Fermilab Colossus–class volumes); 5,000 logical qubits and a ratio of 2,000 physical qubits per logical qubit; target logical error rate of 10^-15; significantly more optimistic assumptions for cryogenics (e.g., much higher qubit densities per cryo-chamber)
+  scenarios_markdown: |
+    Scenarios for national-scale deployment of a fleet of Quantum-Accelerated Computing Infrastructure (QuACI) systems throughout the US from the 2030s into the 2040s:
+    - **Low Penetration:** 10% rate of integrating quantum computers into classical computing data centers over time.
+    - **High Penetration:** 100% rate of integrating quantum computers into classical computing data centers over time.
   map_markdown: |
     - **US Quantum R&D Centers:** Locations of federal quantum research centers in the United States involved in quantum computing R&D from Center for Strategic & International Studies (https://www.csis.org/analysis/innovation-lightbulb-us-federal-investments-quantum-technology-research-and-infrastructure).
     - **US Commercial Data Centers:** Locations of US commercial data centers up until mid-2025 from S&P Global Research Datacenter KnowledgeBase.
+  team_markdown: |
+    - David McCollum, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD) and University of Tennessee, Knoxville; Baker School of Public Policy and Public Affairs
+    - Soumendra Bhanja, Oak Ridge National Laboratory; Computing and Computational Sciences Directorate (CCSD)
+    - Sarah Chehade, Oak Ridge National Laboratory; Computing and Computational Sciences Directorate (CCSD)
+    - Andrea Delgado, Oak Ridge National Laboratory; Physical Sciences Directorate (PSD)
+    - Melrose Pan, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD)
+    - Naushita Sharma, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD)
+    - Weijun Yao, Oak Ridge National Laboratory; Computing and Computational Sciences Directorate (CCSD)
+  citation_markdown: |
+    - X
+    - Y
 
 gis_layers:
-  US Federal Quantum R&D Centers: "./data_map/quantum data center/quantum_data_center.geojson"
-  US Commercial Data Centers: "./data_map/data center/data_center_all.png"
-  style: "./data_map/map_style.yaml"
+  US Federal Quantum R&D Centers: "motherduck://my_db.main.quantum_data_center"
+  US Commercial Data Centers: "motherduck://my_db.main.data_center_all"
+  style: "./io_utils/map_style.yaml"
 
 bar_chart_data:
   Low Penetration:
     - scale: "Practical FTQC"
-      electricity: 14
-      water: 129104
-      ln2: 1415616
-      he4: 9293
-      he3: 1666667
+      electricity: 4
+      water: 13430
+      ln2: 1572907
+      he4: 4629630
+      he3: 1000000
     - scale: "Full FTQC (Small)"
-      electricity: 35
-      water: 334637
-      ln2: 3669277
-      he4: 24088
-      he3: 4320000
+      electricity: 8
+      water:  31336
+      ln2:  4076974
+      he4:  12000000
+      he3:  2592000
     - scale: "Full FTQC (Large)"
-      electricity: 5
-      water: 49342
-      ln2: 1274054
-      he4: 8364
-      he3: 1500000
+      electricity: 1
+      water: 8953
+      ln2: 1415616
+      he4: 4166667
+      he3: 900000
 
   High Penetration:
     - scale: "Practical FTQC"
-      electricity: 140
-      water: 1291037
-      ln2: 14156160
-      he4: 92933
-      he3: 16666667
+      electricity: 36
+      water: 134299
+      ln2: 15729067
+      he4: 46296296
+      he3: 10000000
     - scale: "Full FTQC (Small)"
-      electricity: 352
-      water: 3346369
-      ln2: 36692767
-      he4: 240883
-      he3: 43200000
+      electricity: 81
+      water: 313364
+      ln2: 40769741
+      he4: 120000000
+      he3: 25920000
     - scale: "Full FTQC (Large)"
-      electricity: 50
-      water: 493424
-      ln2: 12740544
-      he4: 83640
-      he3: 15000000
+      electricity: 13
+      water: 89533
+      ln2: 14156160
+      he4: 41666667
+      he3: 9000000
 
 
 bar_chart_info:
@@ -64,8 +79,8 @@ bar_chart_info:
     he4: "Liquid Helium-4"
     he3: "Isotope Helium-3"
   units:
-    electricity: "MW"
-    water: "million liters/year"
-    ln2: "million liters/year"
-    he4: "million liters"
-    he3: "liters/year"
+    electricity: "GW"
+    water: "million liters per year"
+    ln2: "million liters per year (gas at 0 °C and 1 atm)"
+    he4: "liters (liquid at -269 °C)"
+    he3: "liters (gas at 0 °C and 1 atm)"
