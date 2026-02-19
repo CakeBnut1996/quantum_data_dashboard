@@ -54,3 +54,7 @@ with right_col:
 
     st.subheader("Authors")
     if 'team_markdown' in content: st.markdown(content['team_markdown'])
+    st.subheader("Citations")
+    if 'citation_markdown' in content: st.markdown(content['citation_markdown'])
+    st.subheader("Acknowledgement and Disclaimer")
+    if 'disclaimer' in content: st.markdown(content['disclaimer'])

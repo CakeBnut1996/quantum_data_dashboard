@@ -32,7 +32,7 @@ def show_resource_bar_charts(RESOURCES, SCENARIOS, chart_data, selected_scale, l
             st.markdown(f"**{label}**")
             fig = px.bar(
                 df, x='scenario', y='value', error_y='error',
-                labels={'scenario': 'Scenario', 'value': f"{label} ({unit})"},
+                labels={'scenario': 'Scenario', 'value': f"{unit}"},
                 color_discrete_sequence=[px.colors.qualitative.Pastel[0]]
             )
             fig.update_layout(height=260, margin=dict(l=20, r=20, t=30, b=20), showlegend=False)

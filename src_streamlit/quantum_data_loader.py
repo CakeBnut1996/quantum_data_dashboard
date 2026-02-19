@@ -13,13 +13,19 @@ load_dotenv()
 
 
 def get_motherduck_token():
-    """Retrieves token from Streamlit Secrets or Environment Variables."""
-    # 1. Try Streamlit Secrets (Cloud)
-    if "MOTHERDUCK_TOKEN" in st.secrets:
-        return st.secrets["MOTHERDUCK_TOKEN"]
+    # 1. Check Environment Variables first (Fastest/Standard)
+    token = os.getenv("MOTHERDUCK_TOKEN")
+    if token:
+        return token
 
-    # 2. Fallback to Environment Variables (Local)
-    return os.getenv("MOTHERDUCK_TOKEN")
+    # 2. Check Streamlit Secrets if Env Var isn't found
+    # We check if we are in a 'Streamlit' context by seeing if secrets is populated
+    try:
+        # st.secrets.get() is safer than direct key access
+        return st.secrets.get("MOTHERDUCK_TOKEN")
+    except Exception:
+        # Fallback if st.secrets is totally inaccessible
+        return None
 
 
 def _load_yaml(path):
