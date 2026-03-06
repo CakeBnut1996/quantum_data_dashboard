@@ -57,4 +57,5 @@ with right_col:
     st.subheader("Citations")
     if 'citation_markdown' in content: st.markdown(content['citation_markdown'])
     st.subheader("Acknowledgement and Disclaimer")
+    if 'developer' in content: st.markdown(content['developer'])
     if 'disclaimer' in content: st.markdown(content['disclaimer'])

@@ -1,10 +1,10 @@
 dashboard_content:
   title: "Energy and Physical Resource Impacts of Quantum Computing at Scale"
   intro_markdown: |
-    ### Three Different Fault-tolerant Quantum Computers (FTQC) System Configurations:
-    - **Practical FTQC:** Based on IBM’s expectations for its System Two in the ~2027+ timeframe; 200 logical qubits and a ratio of 500 physical qubits per logical qubit; target logical error rate of 10^-7; less optimistic assumptions for cryogenics and control electronics. 
-    - **Full FTQC (Small):** Based on IBM’s expectations for its System Two in the ~2033+ timeframe; 2,000 logical qubits and a ratio of 1,000 physical qubits per logical qubit; target logical error rate of 10^-12; more optimistic assumptions for cryogenics and control electronics. 
-    - **Full FTQC (Large):** An expansion of the Full FTQC (Small); larger cryo-chambers (Fermilab Colossus–class volumes); 5,000 logical qubits and a ratio of 2,000 physical qubits per logical qubit; target logical error rate of 10^-15; significantly more optimistic assumptions for cryogenics (e.g., much higher qubit densities per cryo-chamber)
+    ### Illustrative System Configurations for Assumed Future Fault-tolerant Quantum Computers (FTQC):
+    - **Practical FTQC:** Superconducting qubit technology; based on IBM’s expectations for its System Two in the ~2027+ timeframe; 200 logical qubits and a ratio of 500 physical qubits per logical qubit; target logical error rate of 10^-7; less optimistic assumptions for cryogenics and control electronics. 
+    - **Full FTQC (Small):** Superconducting qubit technology; based on IBM’s expectations for its System Two in the ~2033+ timeframe; 2,000 logical qubits and a ratio of 1,000 physical qubits per logical qubit; target logical error rate of 10^-12; more optimistic assumptions for cryogenics and control electronics. 
+    - **Full FTQC (Large):** Superconducting qubit technology; an expansion of the Full FTQC (Small); larger cryo-chambers (Fermilab Colossus–class volumes); 5,000 logical qubits and a ratio of 2,000 physical qubits per logical qubit; target logical error rate of 10^-15; significantly more optimistic assumptions for cryogenics (e.g., much higher qubit densities per cryo-chamber)
   scenarios_markdown: |
     Scenarios for national-scale deployment of a fleet of Quantum-Accelerated Computing Infrastructure (QuACI) systems throughout the US from the 2030s into the 2040s:
     - **Low Penetration:** 10% rate of integrating quantum computers into classical computing data centers over time.
@@ -13,16 +13,18 @@ dashboard_content:
     - **US Quantum R&D Centers:** Locations of federal quantum research centers in the United States from Center for Strategic & International Studies (https://www.csis.org/analysis/innovation-lightbulb-us-federal-investments-quantum-technology-research-and-infrastructure).
     - **US Commercial Data Centers:** Locations of US commercial data centers up until mid-2025 from S&P Global Research Datacenter KnowledgeBase.
   team_markdown: |
-    - David McCollum, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD) and University of Tennessee, Knoxville; Baker School of Public Policy and Public Affairs
-    - Soumendra Bhanja, Oak Ridge National Laboratory; Computing and Computational Sciences Directorate (CCSD)
-    - Sarah Chehade, University of Tennessee, Chattanooga
-    - Andrea Delgado, Qblox
-    - Melrose Pan, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD)
-    - Naushita Sharma, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD)
-    - Weijun Yao, Oak Ridge National Laboratory; Computing and Computational Sciences Directorate (CCSD)
+    - **David McCollum**, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD) and University of Tennessee, Knoxville; Baker School of Public Policy and Public Affairs
+    - **Soumendra Bhanja**, Oak Ridge National Laboratory; Computing and Computational Sciences Directorate (CCSD)
+    - **Sarah Chehade**, University of Tennessee, Chattanooga (formerly Oak Ridge National Laboratory)
+    - **Andrea Delgado**, Qblox (formerly Oak Ridge National Laboratory)
+    - **Melrose Pan**, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD)
+    - **Naushita Sharma**, Oak Ridge National Laboratory; Energy Science and Technology Directorate (ESTD)
+    - **Weijun Yao**, Oak Ridge National Laboratory; Computing and Computational Sciences Directorate (CCSD)
   citation_markdown: |
     - McCollum, D.L., N. Sharma, M. Pan, W. Yao, S. Bhanja, S. Chehade, and A. Delgado (2026). “Uncertain Quantum Computing Futures and Potential Energy and Physical Resource Impacts at Scale,” Renewable and Sustainable Energy Transition. DOI: 10.1016/j.rset.2026.100140. https://www.sciencedirect.com/science/article/pii/S2667095X26000048
     - McCollum, D.L., S. Bhanja, S. Chehade, A. Delgado, M. Pan, and N. Sharma (2026). “Energy and physical resource impacts of quantum computing merit greater attention,” Nature Reviews Clean Technology. [IN PRESS]
+  developer: |
+    This dashboard was developed by Melrose Pan. The code is available at https://github.com/CakeBnut1996/quantum_data_dashboard
   disclaimer: |
     This work has received funding from the University of Tennessee – Oak Ridge Innovation Institute (UT-ORII). The views expressed represent the authors alone, and do not necessarily reflect those of Oak Ridge National Laboratory, U.S. Department of Energy, or University of Tennessee.
 
