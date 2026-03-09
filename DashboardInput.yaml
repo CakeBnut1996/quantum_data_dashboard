@@ -22,7 +22,7 @@ dashboard_content:
     - **Weijun Yao**, Oak Ridge National Laboratory; Computing and Computational Sciences Directorate (CCSD)
   citation_markdown: |
     - McCollum, D.L., N. Sharma, M. Pan, W. Yao, S. Bhanja, S. Chehade, and A. Delgado (2026). “Uncertain Quantum Computing Futures and Potential Energy and Physical Resource Impacts at Scale,” Renewable and Sustainable Energy Transition. DOI: 10.1016/j.rset.2026.100140. https://www.sciencedirect.com/science/article/pii/S2667095X26000048
-    - McCollum, D.L., S. Bhanja, S. Chehade, A. Delgado, M. Pan, and N. Sharma (2026). “Energy and physical resource impacts of quantum computing merit greater attention,” Nature Reviews Clean Technology. [IN PRESS]
+    - McCollum, D.L., S. Bhanja, S. Chehade, A. Delgado, M. Pan, and N. Sharma (2026). “Energy and physical resource impacts of quantum computing merit greater attention,” Nature Reviews Clean Technology. https://doi.org/10.1038/s44359-026-00156-3
   developer: |
     This dashboard was developed by Melrose Pan. The code is available at https://github.com/CakeBnut1996/quantum_data_dashboard
   disclaimer: |
